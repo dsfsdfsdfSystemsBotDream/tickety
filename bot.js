@@ -7,7 +7,7 @@ let mtickets   = true;
 let tchannels  = [];
 let current    = 0;
 
-client.login(process.env.ROYALE_TOKEN);
+client.login(process.env.BOT_TOKEN);
 
 client.on('ready',async () => console.log(`   - " ${client.user.username} " , Tickety is ready to work.`));
 client.on('message',async message => {
