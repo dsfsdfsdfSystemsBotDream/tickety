@@ -3,7 +3,7 @@ const client     = new Discord.Client();
 const prefix   = "#";
 const category = "531541533275586578";
 const devs     = ["496585065673916417"];
-let mtickets   = true;
+let createt   = true;
 let tchannels  = [];
 let current    = 0;
 
@@ -22,13 +22,13 @@ client.on('message',async message => {
             .setColor("#36393e")
             .addField(`❯ لعمل تكت, \`${prefix}new\``, `» Example: \`${prefix}new [Reason]\`\n» Description: **لعمل روم فقط يظهر لك ولأدارة السيرفر.**`)
             .addField(`❯ قائمة الأوامر, \`${prefix}help\``, `» Example: \`${prefix}help\`\n» Description: **يظهر لك جميع اوامر البوت.**`)
-            .addField(`❯ لإيقاف الأعضاء من عمل تكتات, \`${prefix}mtickets\``, `» Example: \`${prefix}mtickets [Disable/Enable]\`\n» Description: **لجعل جميع اعضاء السيرفر غير قادرون على عمل تكت.**`)
-			.addField(`❯ لأقفال جميع التكتات المفتوحة, \`${prefix}deletetickets\``, `» Example: \`${prefix}deletetickets\`\n» Description: **لمسح جميع رومات التكتات المفتوحة في السيرفر**`)
+            .addField(`❯ لإيقاف الأعضاء من عمل تكتات, \`${prefix}create\``, `» Example: \`${prefix}createt [Disable/Enable]\`\n» Description: **لجعل جميع اعضاء السيرفر غير قادرون على عمل تكت.**`)
+			.addField(`❯ لأقفال جميع التكتات المفتوحة, \`${prefix}deleteall\``, `» Example: \`${prefix}deleteall\`\n» Description: **لمسح جميع رومات التكتات المفتوحة في السيرفر**`)
             .addField(`❯ لقفل التكت المفتوح, \`${prefix}close\``, `» Example: \`${prefix}close\`\n» Description: **لأقفال تكت.**\n\n Bot.`)
             await message.channel.send(`${emojis.yes}, **هذه قائمة بجميع اوامر البووت.**`);
             await message.channel.send(embed);
     } else if(args[0].toLowerCase() === `${prefix}new`) {
-        if(mtickets === false) return message.channel.send(`${emojis.wrong}, **تم ايقاف هذه الخاصية من قبل احد ادارة السيرفر**`);
+        if(createt === false) return message.channel.send(`${emojis.wrong}, **تم ايقاف هذه الخاصية من قبل احد ادارة السيرفر**`);
         if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send(`${emojis.wrong}, **البوت لا يملك صلاحيات لصنع الروم**`);
 		console.log(current);
 		let openReason = "";
@@ -54,20 +54,20 @@ client.on('message',async message => {
 		c.send(`${message.author}`);
 		c.send(embed);
 	});
-    } else if(args[0].toLowerCase() === `${prefix}mtickets`) {
+    } else if(args[0].toLowerCase() === `${prefix}createt`) {
         if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(`${emojis.wrong}, **أنت لست من ادارة السيرفر لتنفيذ هذا الأمر.**`);
 		if(args[1] && args[1].toLowerCase() === "enable") {
-			mtickets = true;
+			createt = true;
 			message.channel.send(`${emojis.yes}, **تم تفعيل التكتات , الاَن يمكن لأعضاء السيرفر استخدام امر انشاء التكت**`);
 		} else if(args[1] && args[1].toLowerCase() === "disable") {
-			mtickets = false;
+			createt = false;
 			message.channel.send(`${emojis.yes}, **تم اغلاق نظام التكتات , الاَن لا يمكن لأي عضو استخدام هذا الأمر**`);
 		} else if(!args[1]) {
-			if(mtickets === true) {
-			mtickets = false;
+			if(createt === true) {
+			createt = false;
 			message.channel.send(`${emojis.yes}, **تم اغلاق نظام التكتات , الاَن لا يمكن لأي عضو استخدام هذا الأمر**`);
-			} else if(mtickets === false) {
-			mtickets = true;
+			} else if(createt === false) {
+			createt = true;
 			message.channel.send(`${emojis.yes}, **تم تفعيل التكتات , الاَن يمكن لأعضاء السيرفر استخدام امر انشاء التكت**`);
 			}
 		}
@@ -83,7 +83,7 @@ client.on('message',async message => {
 		message.channel.send(`${emojis.yes}, **جارى اعادة تشغيل البوت.**`);
 		client.destroy();
 		client.login(process.env.BOT_TOKEN);
-	} else if(args[0].toLowerCase() === `${prefix}deletetickets`) {
+	} else if(args[0].toLowerCase() === `${prefix}deleteall`) {
 		let iq = 0;
 		for(let q = 0; q < tchannels.length; q++) {
 			let c = message.guild.channels.get(tchannels[q]);
