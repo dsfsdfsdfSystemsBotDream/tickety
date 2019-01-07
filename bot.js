@@ -22,7 +22,7 @@ client.on('message',async message => {
             .setColor("#36393e")
             .addField(`❯ لعمل تكت, \`${prefix}new\``, `» Example: \`${prefix}new [Reason]\`\n» Description: **لعمل روم فقط يظهر لك ولأدارة السيرفر.**`)
             .addField(`❯ قائمة الأوامر, \`${prefix}help\``, `» Example: \`${prefix}help\`\n» Description: **يظهر لك جميع اوامر البوت.**`)
-            .addField(`❯ لإيقاف الأعضاء من عمل تكتات, \`${prefix}create\``, `» Example: \`${prefix}createt [Disable/Enable]\`\n» Description: **لجعل جميع اعضاء السيرفر غير قادرون على عمل تكت.**`)
+            .addField(`❯ لإيقاف الأعضاء من عمل تكتات, \`${prefix}createt\``, `» Example: \`${prefix}createt [Disable/Enable]\`\n» Description: **لجعل جميع اعضاء السيرفر غير قادرون على عمل تكت.**`)
 			.addField(`❯ لأقفال جميع التكتات المفتوحة, \`${prefix}deleteall\``, `» Example: \`${prefix}deleteall\`\n» Description: **لمسح جميع رومات التكتات المفتوحة في السيرفر**`)
             .addField(`❯ لقفل التكت المفتوح, \`${prefix}close\``, `» Example: \`${prefix}close\`\n» Description: **لأقفال تكت.**\n\n Bot.`)
             await message.channel.send(`${emojis.yes}, **هذه قائمة بجميع اوامر البووت.**`);
@@ -50,7 +50,7 @@ client.on('message',async message => {
 		let embed = new Discord.RichEmbed()
 		.setAuthor(message.author.username, message.author.avatarURL)
 		.setColor("#36393e")
-		.setDescription(`**انتظر قليلا الى حين رد الادارة عليك**${openReason}`);
+		.setDescription(`**الرجاء الانتظار الى حين مجيء احد اعضاء الادارة والرد عليك**${openReason}`);
 		c.send(`${message.author}`);
 		c.send(embed);
 	});
