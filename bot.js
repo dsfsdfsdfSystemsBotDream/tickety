@@ -1,5 +1,5 @@
 const Discord  = require('discord.js');
-const hero     = new Discord.Client();
+const client     = new Discord.Client();
 const prefix   = "#";
 const category = "531541533275586578";
 const devs     = ["496585065673916417"];
@@ -7,11 +7,11 @@ let mtickets   = true;
 let tchannels  = [];
 let current    = 0;
 
-hero.login(process.env.ROYALE_TOKEN);
+client.login(process.env.ROYALE_TOKEN);
 
-hero.on('ready',async () => console.log(`   - " ${hero.user.username} " , Tickety is ready to work.`));
-hero.on('message',async message => {
-    const emojis   = { yes: `${hero.guilds.find(r => r.id === '520166623395577857').emojis.find(e => e.name === 'Yes')}`, wrong: `${hero.guilds.find(r => r.id === '520166623395577857').emojis.find(e => e.name === 'Wrong')}` };
+client.on('ready',async () => console.log(`   - " ${client.user.username} " , Tickety is ready to work.`));
+client.on('message',async message => {
+    const emojis   = { yes: `${client.guilds.find(r => r.id === '520166623395577857').emojis.find(e => e.name === 'Yes')}`, wrong: `${client.guilds.find(r => r.id === '520166623395577857').emojis.find(e => e.name === 'Wrong')}` };
     if(message.author.bot || message.channel.type === 'dm') return;
     let args = message.content.split(" ");
     let author = message.author.id;
@@ -81,8 +81,8 @@ hero.on('message',async message => {
 	} else if(args[0].toLowerCase() === `${prefix}restart`) {
 		if(!devs.includes(message.author.id)) return message.channel.send(`${emojis.wrong}, **أنت لست من ادارة السيرفر لأستخدام هذا الأمر.**`);
 		message.channel.send(`${emojis.yes}, **جارى اعادة تشغيل البوت.**`);
-		hero.destroy();
-		hero.login(process.env.ROYALE_TOKEN);
+		client.destroy();
+		client.login(process.env.BOT_TOKEN);
 	} else if(args[0].toLowerCase() === `${prefix}deletetickets`) {
 		let iq = 0;
 		for(let q = 0; q < tchannels.length; q++) {
@@ -99,4 +99,3 @@ hero.on('message',async message => {
 	}
 });
 
-// ❯ , »
